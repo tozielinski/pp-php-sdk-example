@@ -1,1 +1,5 @@
 Config.php
+
+# mac-os defaults
+.DS_store
+*.map
