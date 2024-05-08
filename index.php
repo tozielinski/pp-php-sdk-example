@@ -1,5 +1,5 @@
 <?php
-include_once 'config.php';
+include_once 'api/config/Config.php';
 
 $payload = '{
 	"intent" : "CAPTURE",
@@ -35,7 +35,7 @@ $payload = '{
 	<div id="paypal-button-container" style="max-width: 440px"></div>
 	<hr/>
 	<p id="result-message"></p>
-	<script src="https://www.paypal.com/sdk/js?client-id=<?=PP_CLIENT_ID?>&currency=EUR"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=<?=PAYPAL_CREDENTIALS[PAYPAL_ENVIRONMENT]['client_id']?>&currency=EUR"></script>
 	<script>
 		function resultMessage(message, options = { hideButtons: false }) {
 			const container = document.getElementById("paypal-button-container");

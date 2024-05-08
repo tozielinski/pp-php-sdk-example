@@ -2,8 +2,8 @@
 
 define("PAYPAL_CREDENTIALS", array(
 	"sandbox" => [
-		"client_id" => "sb",
-		"client_secret" => ""
+		"client_id" => "Abqhij49wrgTDvmw5nHjgGqvWJG62Umbf2yeUcmVeYcYNZQ2Gs3f4MZis0mWT4eapLdUyw9XUPLiBfmW",
+		"client_secret" => "EMTG4xNqiamsStLRJ9MFJWBsH6uZ_aEk2qjwhC32AtM91yAV7Lf1hL7oK8l8SKYfqoSdc_sJCcJOSs79"
 	],
 	"production" => [
 		"client_id" => "",
