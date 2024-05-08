@@ -14,7 +14,7 @@ $payload = '{
 		{
 			"amount" : {
 				"currency_code" : "EUR",
-				"value" : 122.50
+				"value" : 12.50
 			}
 		}
 	]
@@ -49,7 +49,7 @@ $payload = '{
 				let formData = new FormData();
 				formData.append("payload", JSON.stringify(<?= $payload ?>));
 
-				return fetch('paypal/createOrder.php', {
+				return fetch('api/createOrder.php', {
 					method: 'POST'
 					,body: formData
 				}).then(function(response) {
@@ -76,7 +76,7 @@ $payload = '{
 				});
 			},
 			onApprove: function (data, actions) {
-				return fetch('paypal/captureOrder.php?id='+data.orderID, {
+				return fetch('api/captureOrder.php?id='+data.orderID, {
 					method: 'POST'
 				}).then(function(response) {
 					return response.json();
