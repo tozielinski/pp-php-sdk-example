@@ -4,7 +4,7 @@
 [![Project releases](https://img.shields.io/github/release/tozielinski/pp-php-sdk-example)](https://github.com/tozielinski/pp-php-sdk-example/releases)
 <!-- [![Project build Status](https://badges.netlify.com/api/docsydocs.svg?branch=main)](https://app.netlify.com/sites/docsydocs/deploys) -->
 [![Project contributors](https://img.shields.io/github/contributors/tozielinski/pp-php-sdk-example)](https://github.com/tozielinski/pp-php-sdk-example/graphs/contributors)
-[![Project license](https://img.shields.io/github/license/tozielinski/pp-php-sdk-example)](https://github.com/tozielinski/pp-php-sdk-example)
+[![Project license](https://img.shields.io/github/license/tozielinski/pp-php-sdk-example)](https://github.com/tozielinski/pp-php-sdk-example/LICENSE)
 
 ## Usage
 
