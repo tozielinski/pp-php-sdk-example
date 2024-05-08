@@ -49,7 +49,7 @@ $payload = '{
 				let formData = new FormData();
 				formData.append("payload", JSON.stringify(<?= $payload ?>));
 
-				return fetch('api/createOrder.php', {
+				return fetch('<?= $rootPath.URL['services']['orderCreate']?>', {
 					method: 'POST'
 					,body: formData
 				}).then(function(response) {
@@ -76,7 +76,7 @@ $payload = '{
 				});
 			},
 			onApprove: function (data, actions) {
-				return fetch('api/captureOrder.php?id='+data.orderID, {
+				return fetch('<?= $rootPath.URL['services']['orderCapture']?>?id='+data.orderID, {
 					method: 'POST'
 				}).then(function(response) {
 					return response.json();
