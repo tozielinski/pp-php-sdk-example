@@ -2,7 +2,7 @@
 
 define("PAYPAL_CREDENTIALS", array(
 	"sandbox" => [
-		"client_id" => "sb",
+		"client_id" => "",
 		"client_secret" => ""
 	],
 	"production" => [
