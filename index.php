@@ -1,24 +1,7 @@
 <?php
 include_once 'api/config/Config.php';
 
-$payload = '{
-	"intent" : "CAPTURE",
-	"payment_source" : {
-		"paypal" : {
-			"experience_context" : {
-				"brand_name" : "test"
-			}
-		}
-	},
-	"purchase_units" : [
-		{
-			"amount" : {
-				"currency_code" : "EUR",
-				"value" : 12.50
-			}
-		}
-	]
-}';
+$payload = file_get_contents("payload.json");
 
 ?>
 <!DOCTYPE html>
