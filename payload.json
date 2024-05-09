@@ -1,0 +1,18 @@
+{
+	"intent" : "CAPTURE",
+	"payment_source" : {
+		"paypal" : {
+			"experience_context" : {
+				"brand_name" : "test"
+			}
+		}
+	},
+	"purchase_units" : [
+		{
+			"amount" : {
+				"currency_code" : "EUR",
+				"value" : 12.50
+			}
+		}
+	]
+}
