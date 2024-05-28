@@ -9,29 +9,37 @@ $payload = file_get_contents("payload.json");
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="Content-Security-Policy" content="form-action https://www.sandbox.paypal.com/checkoutnow" />
+		<!-- <meta http-equiv="Content-Security-Policy" content="form-action https://www.sandbox.paypal.com/checkoutnow" /> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<title>PayPal JS SDK Standard Integration</title>
 	</head>
 	<body>
 
 	<h1>Smart Buttons Integration</h1>
+	<div id="payload-container"></div>
 	<div id="paypal-button-container" style="max-width: 440px"></div>
 	<hr/>
-	<p id="result-message"></p>
+	<div id="response-container"></div>
 	<script src="https://www.paypal.com/sdk/js?client-id=<?=PAYPAL_CREDENTIALS[PAYPAL_ENVIRONMENT]['client_id']?>&currency=EUR"></script>
 	<script>
-		function resultMessage(message, options = { hideButtons: false }) {
-			const container = document.getElementById("paypal-button-container");
-			if (options.hideButtons) container.style.display = "none";
-			const p = document.createElement("p");
-			p.innerHTML = `<big>${message}</big>`;
-			container.parentNode.appendChild(p);
+		function writeResponse (containerTitle, summaryTitle, content) {
+			const container = document.getElementById(containerTitle);
+			const details = document.createElement("details");
+			const summary = document.createElement("summary");
+			summary.innerHTML = summaryTitle;
+			const pre = document.createElement("pre");
+			pre.innerHTML = '<p>'+JSON.stringify(content, null, 2)+'</p>';
+			const hr = document.createElement("hr");
+			container.appendChild(details);
+			details.appendChild(summary);
+			details.appendChild(pre);
+			container.appendChild(hr);
 		}
 		window.paypal.Buttons({
 			createOrder: function () {
 				let formData = new FormData();
 				formData.append("payload", JSON.stringify(<?= $payload ?>));
-
+				writeResponse("payload-container", "Payload", <?= $payload ?>)
 				return fetch('<?= $rootPath.URL['services']['orderCreate']?>', {
 					method: 'POST'
 					,body: formData
@@ -39,19 +47,19 @@ $payload = file_get_contents("payload.json");
 					return response.json();
 				}).then(function(resJson) {
 					if (resJson.response?.id) {
+						writeResponse("response-container", "Create Order Response", resJson.response)
 						console.log('create response', resJson.response);
 						return resJson.response.id;
 					} else {
 						console.error({callback: "createOrder", serverResponse: resJson.response}, JSON.stringify(resJson.response, null, 2));
 						const errorDetail = resJson.response?.details?.[0];
-						resultMessage(
+						writeResponse("response-container", "ERROR",
 							`Could not initiate PayPal Checkout...<br><br>${
 								errorDetail?.issue || ""
 							} ${
 								errorDetail?.description || resJson.response?.message || ""
 							} ` +
-							(resJson.response?.debug_id ? `(${resJson.response.debug_id})` : ""),
-							{ hideButtons: true }
+							(resJson.response?.debug_id ? `(${resJson.response.debug_id})` : "")
 						);
 					}
 				}).catch((error) => {
@@ -68,13 +76,17 @@ $payload = file_get_contents("payload.json");
 						resJson.response?.purchase_units?.[0]?.payments?.authorizations?.[0];
 					const errorDetail = resJson.response?.details?.[0];
 					if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
-					// recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+						writeResponse("response-container", "ERROR",
+							`Sorry, your transaction will be restarted. <br><br>${
+								errorDetail?.description || ""
+							} (${resJson.response?.debug_id || ""})`
+						);
 						return actions.restart();
 					} else if (errorDetail || !transaction || transaction?.status === "DECLINED" || transaction?.status === "FAILED") {
 					// Any other error (non-recoverable)
 						console.error({callback: "onApprove", response: resJson.response}, JSON.stringify(resJson.response, null, 2));
 						// Display a clear failure message informing the user the transaction failed.
-						resultMessage(
+						writeResponse("response-container", "ERROR",
 							`Sorry, your transaction could not be processed. <br><br>${
 								errorDetail?.description || ""
 							} (${resJson.response?.debug_id || ""})`
@@ -82,20 +94,10 @@ $payload = file_get_contents("payload.json");
 					} else if (transaction?.status === "COMPLETED") {
 					// Successful transaction!
 					// Show a success message to the payer somewhere on this page...
-						resultMessage(`<h3>Thank you for your payment!</h3>`);
-						// Or, go to another URL with:  window.location.href = 'thank_you.html';
-						// Optionally show your own order number/invoice_id to the payer (if set for this transaction)
-						if (transaction?.invoice_id)
-						resultMessage(
-							`Your order number: ${transaction.invoice_id}`
-						);
-						// For demo purposes:
+						writeResponse("response-container", "Capture Payment For Order Response", resJson.response)
 						console.log('capture response', resJson.response, JSON.stringify(resJson.response, null, 2));
-						resultMessage(
-							`Transaction ${transaction.status}: ${transaction.id}<br><br>See console for all available details`
-						);
 					} else {
-						resultMessage(
+						writeResponse("response-container", "ERROR",
 							`Unusual error or transaction status. <br><br>${
 								errorDetail?.description || ""
 							} (${resJson.response?.debug_id || ""})`
