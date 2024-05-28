@@ -62,6 +62,7 @@
       $this->_http->addHeader("Content-Type: application/json");
       $this->_http->addHeader("Authorization: Bearer " . $this->_token);
 //	  $this->_http->addHeader("PayPal-Mock-Response: {'mock_application_codes': 'DUPLICATE_INVOICE_ID'}");
+//    $this->_http->addHeader("PayPal-Mock-Response: {'mock_application_codes': 'INSTRUMENT_DECLINED'}");
       $this->_http->setUrl($this->_createApiUrl("checkout/orders/" . $orderId . "/capture"));
       $postData='{}';
       $this->_http->setBody($postData);
