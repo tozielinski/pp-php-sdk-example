@@ -11,7 +11,7 @@ $payload = file_get_contents("payload.json");
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- <meta http-equiv="Content-Security-Policy" content="form-action https://www.sandbox.paypal.com/checkoutnow" /> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-		<title>PayPal JS SDK Standard Integration</title>
+		<title>PayPal PHP SDK Standard Integration</title>
 	</head>
 	<body>
 
