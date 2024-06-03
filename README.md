@@ -8,8 +8,8 @@
 
 ## Usage
 
-you have to create PayPal REST sandbox credentials and to insert them into api/config/Config.php as client_id and client_secret for the correct environment.
+you have to create PayPal REST sandbox credentials and to insert them into api/config/Config.php as client_id and client_secret for the correct environment. For card payments, using the black button, test card numbers as 5192503440102994 can be used with a german address.
 
 ## Example
 
-an example is hosted under https://irl.torstenzielinski.de/pp-php-sdk-example/
+an example is hosted under https://irl.torstenzielinski.de/pp-php-sdk-example/ (as an authorize, instead of a capture).
