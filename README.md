@@ -8,8 +8,7 @@
 
 ## Usage
 
-you have to create PayPal REST sandbox credentials and to insert them into api/config/Config.php as client_id and client_secret for the correct environment. For card payments, using the black button, test card numbers from here https://docs.adyen.com/development-resources/testing/test-card-numbers/ can be used.
-
+you have to create PayPal REST sandbox credentials and to insert them into api/config/Config.php as client_id and client_secret for the correct environment. For card payments, using the black button, use [test card numbers](https://docs.adyen.com/development-resources/testing/test-card-numbers/).
 ## Example
 
 an example is hosted under https://irl.torstenzielinski.de/pp-php-sdk-example/
