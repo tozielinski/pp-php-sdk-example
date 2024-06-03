@@ -12,4 +12,4 @@ you have to create PayPal REST sandbox credentials and to insert them into api/c
 
 ## Example
 
-an example is hosted under https://irl.torstenzielinski.de/pp-php-sdk-example/ (as an authorize, instead of a capture).
+an example is hosted under https://irl.torstenzielinski.de/pp-php-sdk-example/
