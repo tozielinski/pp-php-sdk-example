@@ -8,4 +8,8 @@
 
 ## Usage
 
-you have to create PayPal REST sandbox credentials and to insert them into config/Config.php as client_id and client_secret for the correct environment.
+you have to create PayPal REST sandbox credentials and to insert them into api/config/Config.php as client_id and client_secret for the correct environment.
+
+## Example
+
+an example is hosted under https://irl.torstenzielinski.de/pp-php-sdk-example/
