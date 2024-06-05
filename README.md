@@ -8,8 +8,22 @@
 
 ## Usage
 
-you have to create PayPal REST sandbox credentials and to insert them into api/config/Config.php as client_id and client_secret for the correct environment. To test card payments, using sandbox and the black button, use [test card numbers](https://docs.adyen.com/development-resources/testing/test-card-numbers/).
+You have to create PayPal REST sandbox credentials and copy/move api/config/Config.php.sav to api/config/Config.php. Insert the credentials into api/config/Config.php as client_id and client_secret for the correct environment. To test card payments, using sandbox and the black button, use [test card numbers](https://docs.adyen.com/development-resources/testing/test-card-numbers/).
+
+## Documentation
+
+A running LAMP environment is necessarry. Clone the git to the root folder of that installation.
+```sh
+git clone https://github.com/tozielinski/pp-php-sdk-example.git
+cd pp-php-sdk-example/api/config
+cp Config.php.sav Config.php
+```
+Now you must add your credentials in Config.php.
 
 ## Example
 
-an example can be found [here](https://irl.torstenzielinski.de/pp-php-sdk-example/).
+An example can be found [here](https://irl.torstenzielinski.de/pp-php-sdk-example/).
+
+## License
+
+This project is licensed under the MIT license - see the [LICENSE.md](https://github.com/tozielinski/pp-php-sdk-example/blob/main/LICENSE) file for details.
